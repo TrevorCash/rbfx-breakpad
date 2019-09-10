@@ -1,3 +1,0 @@
-[submodule "ThirdParty/breakpad"]
-	path = ThirdParty/breakpad
-	url = https://github.com/Mendeley/breakpad
