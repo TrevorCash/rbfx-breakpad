@@ -1,11 +1,14 @@
 cmake_minimum_required (VERSION 3.4.3)
 
-add_library(rbfx-mathextras SHARED MathExtras.h MathExtras.cpp)
+add_library(rbfx-bugsplat SHARED bugsplat_rbfx.h)
 
-target_compile_definitions(rbfx-mathextras PUBLIC URHOMATHEXTRAS_EXPORTS)
+target_compile_definitions(rbfx-bugsplat PUBLIC URHOBUGSPLAT_EXPORTS)
 
-target_include_directories(rbfx-mathextras PRIVATE ThirdParty/Eigen)
+target_include_directories(rbfx-bugsplat PUBLIC ./ThirdParty/BugSplat/inc )
 
-target_include_directories(rbfx-mathextras PUBLIC . )
+find_library(bugsplatlib BugSplat64 /ThirdParty/BugSplat/lib64)
 
-target_link_libraries(rbfx-mathextras Urho3D)
+target_link_libraries(rbfx-bugsplat Urho3D bugsplatlib)
+
+
+set_target_properties(rbfx-bugsplat PROPERTIES LINKER_LANGUAGE CXX)
