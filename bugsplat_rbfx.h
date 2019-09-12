@@ -3,6 +3,7 @@
 #include "BugSplat.h"
 #include <functional>
 #include "Urho3D/IO/Log.h"
+#include "../TechGame/AppVersion.h"
 
 #define URHOBUGSPLAT_EXPORT_API __declspec(dllexport)
 
@@ -49,7 +50,11 @@ namespace Urho3D {
 			//else
 			//{
 				// BugSplat initialization.  Post crash reports to the "Fred" database for application "myConsoleCrasher" version "1.0"
-				mpSender = new MiniDmpSender(L"MechanismGame", L"windowsnative", L"0.0.2", NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_PREVENTHIJACKING);
+			
+			wchar_t* versionString;
+			mbstowcs(versionString, GetSubsystem<AppVersion>()->GetVersionString().c_str(), GetSubsystem<AppVersion>()->GetVersionString().length());
+			mpSender = new MiniDmpSender(L"MechanismGame", L"windowsnative", versionString, NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_PREVENTHIJACKING);
+			delete versionString;
 
 				// The following calls add support for collecting crashes for abort(), vectored exceptions, out of memory,
 				// pure virtual function calls, and for invalid parameters for OS functions.
