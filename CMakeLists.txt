@@ -20,4 +20,5 @@ target_link_libraries(rbfx-bugsplat PUBLIC Urho3D ${bugsplatlib})
 #        DESTINATION ${CMAKE_BINARY_DIR}/bin/Release
 #        DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug)
 
-add_custom_command(TARGET rbfx-bugsplat POST_BUILD COMMAND copy ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/BugSplat/bin64/BugSplat64.dll ${CMAKE_BINARY_DIR}/bin/$<CONFIG>/)
+add_custom_target(rbfx-bugsplat-dll-copy COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/ThirdParty/BugSplat/bin64/BugSplat64.dll ${CMAKE_BINARY_DIR}/bin/$<CONFIG>/BugSplat64.dll)
+add_dependencies(rbfx-bugsplat rbfx-bugsplat-dll-copy)
