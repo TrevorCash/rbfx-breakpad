@@ -51,7 +51,7 @@ namespace Urho3D {
 			//{
 				// BugSplat initialization.  Post crash reports to the "Fred" database for application "myConsoleCrasher" version "1.0"
 			
-			wchar_t* versionString;
+			wchar_t* versionString = nullptr;
 			mbstowcs(versionString, GetSubsystem<AppVersion>()->GetVersionString().c_str(), GetSubsystem<AppVersion>()->GetVersionString().length());
 			mpSender = new MiniDmpSender(L"MechanismGame", L"windowsnative", versionString, NULL, MDSF_USEGUARDMEMORY | MDSF_LOGFILE | MDSF_PREVENTHIJACKING);
 			delete versionString;
