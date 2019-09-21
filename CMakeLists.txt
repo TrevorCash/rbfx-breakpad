@@ -5,7 +5,7 @@ project (rbfx-bugsplat)
 
 
 
-add_library(rbfx-bugsplat SHARED bugsplat_rbfx.h bugsplat_rbfx.cpp)
+add_library(rbfx-bugsplat bugsplat_rbfx.h bugsplat_rbfx.cpp)
 
 target_compile_definitions(rbfx-bugsplat PUBLIC URHOBUGSPLAT_EXPORTS)
 
